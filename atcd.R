@@ -155,8 +155,8 @@ scrape_who_atc <- function(root_atc_code) {
     # Add the root node if needed.
     if(atc_code_length == 1) {
       root_atc_code_name <- html_data %>%
-        html_nodes(css="#content a") %>%
-        nth(3) %>% html_text
+        html_elements(css="#content a") %>%
+        html_text %>% nth(3)
       return(bind_rows(tibble(atc_code = root_atc_code, atc_name = root_atc_code_name), tval))
     } else return(tval)
   } else {
